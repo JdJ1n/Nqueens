@@ -29,11 +29,12 @@ while (menu_continue)
             while (board_continue)
             {
                 Console.WriteLine("\r\nVeuillez entrer un numéro pour sélectionner la fonction que vous voulez utiliser:");
-                Console.WriteLine("(1) Une solution possible pour une taille de plateau donnée avec nombre de tuples k-prometteurs");
-                Console.WriteLine("(2) Toutes les solutions possibles pour une taille de plateau avec nombre de tuples k-prometteurs.");
-                Console.WriteLine("(3) Le nombre de tuples k-prometteurs total pour explorer toute l’espace de recherche.");
-                Console.WriteLine("(4) Entrer un nouveau N.");
-                Console.WriteLine("(5) Quitter.");
+                Console.WriteLine("(1) Une solution possible pour une taille de plateau donnée avec le nombre de tuples k-prometteurs");
+                Console.WriteLine("(2) Toutes les solutions possibles pour une taille de plateau avec les nombre de tuples k-prometteurs.");
+                Console.WriteLine("(3) Le nombre total de solutions.");
+                Console.WriteLine("(4) Le nombre de tuples k-prometteurs total pour explorer toute l'espace de recherche.");
+                Console.WriteLine("(5) Entrer un nouveau N.");
+                Console.WriteLine("(6) Quitter.");
                 switch (Console.ReadKey().KeyChar)
                 {
                     case '1':
@@ -60,12 +61,16 @@ while (menu_continue)
                         break;
                     case '3':
                         Console.WriteLine();
-                        Console.WriteLine("Le nombre de tuples k-prometteurs total :" + sol.Count);
+                        Console.WriteLine("Le nombre total de solutions :" + sol.Count(x => x.Count == n));
                         break;
                     case '4':
-                        board_continue = false;
+                        Console.WriteLine();
+                        Console.WriteLine("Le nombre de tuples k-prometteurs total :" + sol.Count);
                         break;
                     case '5':
+                        board_continue = false;
+                        break;
+                    case '6':
                         board_continue = false;
                         menu_continue = false;
                         break;
