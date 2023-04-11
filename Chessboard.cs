@@ -43,7 +43,7 @@ namespace INF1008_tp2
         public void solveNReines(bool[,] board, int k, List<List<int>> allSteps)
         {
             //Sauvegarde de tous les progrès et étapes en cours
-            List<int> currentStep = Enumerable.Range(0, N).Select(i => Enumerable.Range(0, N).Where(j => board[i, j]).DefaultIfEmpty(-1).First()).Where(x => x != -1).ToList();
+            List<int> currentStep = Enumerable.Range(0, N).Select(i => Enumerable.Range(0, N).Where(j => board[j, i]).DefaultIfEmpty(-1).First()).Where(x => x != -1).ToList();
             /*List<int> currentStep = new List<int>();
             for (int i = 0; i < N; i++)
             {

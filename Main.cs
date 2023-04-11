@@ -31,46 +31,69 @@ while (menu_continue)
                 Console.WriteLine("\r\nVeuillez entrer un numéro pour sélectionner la fonction que vous voulez utiliser:");
                 Console.WriteLine("(1) Une solution possible pour une taille de plateau donnée avec le nombre de tuples k-prometteurs");
                 Console.WriteLine("(2) Toutes les solutions possibles pour une taille de plateau avec les nombre de tuples k-prometteurs.");
-                Console.WriteLine("(3) Le nombre total de solutions.");
-                Console.WriteLine("(4) Le nombre de tuples k-prometteurs total pour explorer toute l'espace de recherche.");
-                Console.WriteLine("(5) Entrer un nouveau N.");
-                Console.WriteLine("(6) Quitter.");
+                Console.WriteLine("(3) 4 solutions possibles pour une taille de plateau avec les nombre de tuples k-prometteurs.");
+                Console.WriteLine("(4) Le nombre total de solutions.");
+                Console.WriteLine("(5) Le nombre de tuples k-prometteurs total pour explorer toute l'espace de recherche.");
+                Console.WriteLine("(6) Entrer un nouveau N.");
+                Console.WriteLine("(7) Quitter.");
                 switch (Console.ReadKey().KeyChar)
                 {
                     case '1':
                         Console.WriteLine();
                         List<int> first = sol.First(x => x.Count == n);
-                        Console.WriteLine("Le nombre de tuples k-prometteurs de la première solution :" + sol.IndexOf(first));
+                        Console.WriteLine("Le nombre de tuples k-prometteurs de la première solution :" + (sol.IndexOf(first) + 1));
                         Console.WriteLine("[" + string.Join(",", first.Select(x => x + 1)) + "]");
                         cb.Afficher(first);
                         break;
                     case '2':
                         Console.WriteLine();
-                        int kcounter = 0;
+                        int kcounter1 = 0;
                         foreach (List<int> solution in sol)
                         {
-                            kcounter++;
+                            kcounter1++;
                             if (solution.Count == n)
                             {
-                                Console.WriteLine("Le nombre de tuples k-prometteurs de la solution :" + kcounter);
+                                Console.WriteLine("Le nombre de tuples k-prometteurs de la solution :" + kcounter1);
                                 Console.WriteLine("[" + string.Join(",", solution.Select(x => x + 1)) + "]");
                                 cb.Afficher(solution);
-                                kcounter = 0;
+                                kcounter1 = 0;
                             }
                         }
                         break;
                     case '3':
                         Console.WriteLine();
-                        Console.WriteLine("Le nombre total de solutions :" + sol.Count(x => x.Count == n));
+                        int kcounter2 = 0;
+                        int scounter = 0;
+                        foreach (List<int> solution in sol)
+                        {
+                            kcounter2++;
+                            if (solution.Count == n)
+                            {
+                                scounter++;
+                                Console.WriteLine("Le nombre de tuples k-prometteurs de la solution :" + kcounter2);
+                                Console.WriteLine("[" + string.Join(",", solution.Select(x => x + 1)) + "]");
+                                cb.Afficher(solution);
+                                kcounter2 = 0;
+                                if (scounter == 4)
+                                {
+                                    scounter = 0;
+                                    break;
+                                }
+                            }
+                        }
                         break;
                     case '4':
                         Console.WriteLine();
-                        Console.WriteLine("Le nombre de tuples k-prometteurs total :" + sol.Count);
+                        Console.WriteLine("Le nombre total de solutions :" + sol.Count(x => x.Count == n));
                         break;
                     case '5':
-                        board_continue = false;
+                        Console.WriteLine();
+                        Console.WriteLine("Le nombre de tuples k-prometteurs total :" + sol.Count);
                         break;
                     case '6':
+                        board_continue = false;
+                        break;
+                    case '7':
                         board_continue = false;
                         menu_continue = false;
                         break;
